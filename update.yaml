@@ -2,11 +2,29 @@
 - hosts: all
   become: true
   tasks:
-  - name: update repository index
+  - name: update repository index for ubuntu
     apt:
       update_cache: yes
-  
-  - name: install vim
+    when: ansible_distribution in ["Ubuntu","Debian"]
+
+  - name: install upgrade for Ubuntu
+    apt:
+      upgrade: yes  
+    when: ansible_distribution in ["Ubuntu","Debian"]
+ 
+  - name: install vim for Ubuntu
     apt:
       name: vim-nox 
       state: latest
+    when: ansible_distribution in ["Ubuntu","Debian"]
+
+  - name: update repository index for CentOS
+    dnf:
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+  
+  - name: install vim for CentOs
+    dnf:
+      name: vim-nox
+      state: latest
+    when: ansible_distribution == "CentOS"

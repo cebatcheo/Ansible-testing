@@ -4,6 +4,6 @@
 192.168.0.6 ansible_user=pi
 [samba]
 192.168.0.3
-[proxmox]
-192.168.0.2	ansible_user=root
+#[proxmox]
+#192.168.0.2	ansible_user=root
 
